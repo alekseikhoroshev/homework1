@@ -126,6 +126,7 @@ let summ = Double(readLine() ?? "0.0")
 print("Введите годовой процент: ")
 let yearPercent = Double(readLine() ?? "0.0")
 
+//Вычисляем итоговую сумму в цикле, последовательно вычисляя годовую капитализацию и увеличивая сумму по годам
 if var clientSumm = summ, let percent = yearPercent {
     for _ in 1...5 {
         clientSumm += ((clientSumm/100)*percent)
@@ -139,14 +140,14 @@ if var clientSumm = summ, let percent = yearPercent {
 var calendar = Calendar.current
 var daysCount = 0
 var date = Date()
-
+//Проверяем вычисления используя формулу для рассчета капитализации по вкладу по годам
 if var clientSumm = summ, let percent = yearPercent {
     for _ in 1...5 {
         let range = calendar.range(of: .day, in: .year, for: date)
         daysCount = range?.count ?? 0
         date = calendar.date(byAdding: .year, value: 1, to: date)!
         
-        clientSumm += (clientSumm * percent * Double(daysCount)/365)/100
+        clientSumm += (clientSumm * percent * Double(daysCount)/Double(daysCount))/100
     }
     print("Проверка вычисления с использованием формулы: \(clientSumm)")
 }
